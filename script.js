@@ -52,7 +52,7 @@ async function login() {
     }
     if (hash === data.senha_hash) {
       alert(`Seja bem vindo ${data.nome}`);
-      window.location.href = 'dashboard.html';
+      window.location.href = 'https://renan-popp.vercel.app/';
     }else {
       alert('Senha incorreta tente novamente')
       status.className = 'status-global error';
