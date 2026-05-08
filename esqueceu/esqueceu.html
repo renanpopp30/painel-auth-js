@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recuperar Senha — Renda Extra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="esqueceu.css" />
+</head>
+<body>
+
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <main class="wrapper">
+
+    <!-- Lado esquerdo — branding -->
+    <aside class="brand">
+      <div class="brand-inner">
+        <div class="logo">RE</div>
+        <h2 class="brand-title">Recuperar<br /><span>acesso.</span></h2>
+        <p class="brand-sub">
+          Sem problemas. Vamos verificar<br />
+          sua identidade e criar uma nova senha.
+        </p>
+
+        <div class="brand-divider"></div>
+
+        <div class="brand-steps">
+          <div class="step" id="step-indicator-1">
+            <div class="step-num">1</div>
+            <div class="step-info">
+              <span class="step-title">Verificar e-mail</span>
+              <span class="step-desc">Confirmar que a conta existe</span>
+            </div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step inactive" id="step-indicator-2">
+            <div class="step-num">2</div>
+            <div class="step-info">
+              <span class="step-title">Inserir token</span>
+              <span class="step-desc">Código gerado pelo sistema</span>
+            </div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step inactive" id="step-indicator-3">
+            <div class="step-num">3</div>
+            <div class="step-info">
+              <span class="step-title">Nova senha</span>
+              <span class="step-desc">Definir e confirmar</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="brand-tag">Sistema v1.0</div>
+      </div>
+    </aside>
+
+    <!-- ================================
+         ETAPA 1 — verificar email
+    ================================= -->
+    <section class="form-panel" id="etapa-1">
+      <div class="form-card">
+
+        <header class="form-header">
+          <div class="form-tag">Etapa 1 de 3</div>
+          <h1>Qual é o seu <span>e-mail?</span></h1>
+          <p class="form-desc">Digite o e-mail cadastrado para gerar o token de recuperação.</p>
+        </header>
+
+        <div class="field">
+          <label for="email">E-mail cadastrado</label>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="m2 7 10 7 10-7"/>
+            </svg>
+            <input type="email" id="email" placeholder="seu@email.com" autocomplete="email" />
+          </div>
+          <p class="field-error" id="erro-email"></p>
+        </div>
+
+        <button class="btn-principal" onclick="verificarEmail()">
+          <span id="btn-email-text">Gerar token</span>
+          <svg id="btn-email-loader" class="btn-spinner hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          </svg>
+        </button>
+
+        <div class="status-global" id="status-email"></div>
+
+        <!-- Token exibido na tela (simulando email) -->
+        <div class="token-box hidden" id="token-box">
+          <div class="token-box-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="m2 7 10 7 10-7"/>
+            </svg>
+            <span>Simulação de e-mail enviado</span>
+          </div>
+          <p class="token-box-label">Seu token de recuperação:</p>
+          <div class="token-valor" id="token-valor">——</div>
+          <p class="token-expira">⏱ Válido por <strong>30 minutos</strong></p>
+        </div>
+
+        <p class="voltar-link"><a href="../index.html">← Voltar para o login</a></p>
+
+      </div>
+    </section>
+
+    <!-- ================================
+         ETAPA 2 — inserir token
+    ================================= -->
+    <section class="form-panel hidden" id="etapa-2">
+      <div class="form-card">
+
+        <header class="form-header">
+          <div class="form-tag">Etapa 2 de 3</div>
+          <h1>Digite o <span>token</span></h1>
+          <p class="form-desc">Copie o token exibido acima e cole no campo abaixo para validar.</p>
+        </header>
+
+        <div class="field">
+          <label for="token">Token de recuperação</label>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <input type="text" id="token" placeholder="Cole o token aqui" autocomplete="off" />
+          </div>
+          <p class="field-error" id="erro-token"></p>
+        </div>
+
+        <button class="btn-principal" onclick="validarToken()">
+          <span id="btn-token-text">Validar token</span>
+          <svg id="btn-token-loader" class="btn-spinner hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          </svg>
+        </button>
+
+        <div class="status-global" id="status-token"></div>
+
+        <p class="voltar-link">
+          <a href="#" onclick="irParaEtapa(1); return false;">← Voltar</a>
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ================================
+         ETAPA 3 — nova senha
+    ================================= -->
+    <section class="form-panel hidden" id="etapa-3">
+      <div class="form-card">
+
+        <header class="form-header">
+          <div class="form-tag">Etapa 3 de 3</div>
+          <h1>Nova <span>senha</span></h1>
+          <p class="form-desc">Escolha uma senha forte para proteger sua conta.</p>
+        </header>
+
+        <div class="field">
+          <label for="nova-senha">Nova senha</label>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="3" y="11" width="18" height="11" rx="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            <input type="password" id="nova-senha" placeholder="Mínimo 6 caracteres" />
+            <button type="button" class="toggle-senha" data-target="nova-senha">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+          <p class="field-error" id="erro-nova-senha"></p>
+        </div>
+
+        <div class="field">
+          <label for="confirmar-senha">Confirmar nova senha</label>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <input type="password" id="confirmar-senha" placeholder="Repita a nova senha" />
+            <button type="button" class="toggle-senha" data-target="confirmar-senha">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+          <p class="field-error" id="erro-confirmar-senha"></p>
+        </div>
+
+        <button class="btn-principal" onclick="atualizarSenha()">
+          <span id="btn-senha-text">Salvar nova senha</span>
+          <svg id="btn-senha-loader" class="btn-spinner hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          </svg>
+        </button>
+
+        <div class="status-global" id="status-senha"></div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="esqueceu.js"></script>
+</body>
+</html>

@@ -1,0 +1,433 @@
+/* =============================================
+   RESET & BASE
+============================================= */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg:           #0c0e1a;
+  --surface:      #111427;
+  --surface-2:    #161929;
+  --border:       #1e2240;
+  --border-hover: #2a3060;
+  --accent:       #4f8ef7;
+  --accent-glow:  rgba(79, 142, 247, 0.15);
+  --accent-dark:  rgba(79, 142, 247, 0.08);
+  --text:         #e8eaf6;
+  --text-2:       #a0a8c8;
+  --muted:        #4a5278;
+  --success:      #34d399;
+  --success-glow: rgba(52, 211, 153, 0.12);
+  --error:        #f87171;
+  --error-glow:   rgba(248, 113, 113, 0.10);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}
+
+html, body { height: 100%; }
+
+body {
+  background: var(--bg);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* =============================================
+   FUNDO DECORATIVO
+============================================= */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(79,142,247,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79,142,247,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-glow {
+  position: fixed;
+  top: -20%;
+  left: -10%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(ellipse, rgba(79,142,247,0.07) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =============================================
+   LAYOUT PRINCIPAL
+============================================= */
+.wrapper {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+}
+
+/* =============================================
+   BRAND (LADO ESQUERDO)
+============================================= */
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 48px;
+  border-right: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.brand::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  right: -80px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(79,142,247,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.brand-inner { max-width: 320px; }
+
+.logo {
+  width: 56px;
+  height: 56px;
+  background: var(--accent);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  color: #fff;
+  margin-bottom: 28px;
+  box-shadow: 0 0 32px rgba(79,142,247,0.3);
+}
+
+.brand-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+.brand-title span { color: var(--accent); }
+
+.brand-sub {
+  font-size: 15px;
+  color: var(--text-2);
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+
+.brand-divider {
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 28px;
+}
+
+.brand-quote {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--text-2);
+  line-height: 1.7;
+  padding-left: 14px;
+  border-left: 2px solid var(--accent);
+  margin-bottom: 48px;
+}
+
+.brand-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 5px 14px;
+}
+
+/* =============================================
+   FORM PANEL (LADO DIREITO)
+============================================= */
+.form-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 32px;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* =============================================
+   CABEÇALHO DO FORMULÁRIO
+============================================= */
+.form-header { margin-bottom: 36px; }
+
+.form-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-dark);
+  border: 1px solid rgba(79,142,247,0.25);
+  border-radius: 20px;
+  padding: 4px 12px;
+  margin-bottom: 16px;
+}
+
+.form-header h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.form-desc {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+/* =============================================
+   CAMPOS
+============================================= */
+.field { margin-bottom: 20px; }
+
+/* Label com link "Esqueceu a senha?" na mesma linha */
+.label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.label-row label { margin-bottom: 0; }
+
+label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+  transition: color 0.2s;
+}
+
+.field:focus-within label { color: var(--accent); }
+
+.input-wrap { position: relative; }
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--muted);
+  pointer-events: none;
+  transition: color 0.2s;
+}
+
+.field:focus-within .input-icon { color: var(--accent); }
+
+input {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 13px 44px 13px 44px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+input::placeholder {
+  color: var(--muted);
+  opacity: 0.6;
+}
+
+input:focus {
+  border-color: var(--accent);
+  background: var(--surface-2);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+input.input-error {
+  border-color: rgba(248,113,113,0.5);
+  box-shadow: 0 0 0 3px var(--error-glow);
+}
+
+/* Botão mostrar/ocultar senha */
+.toggle-senha {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--muted);
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.toggle-senha:hover { color: var(--accent); }
+.toggle-senha svg { width: 16px; height: 16px; }
+
+.field-error {
+  font-size: 12px;
+  color: var(--error);
+  margin-top: 6px;
+  min-height: 16px;
+  padding-left: 2px;
+}
+
+/* =============================================
+   LINK ESQUECEU A SENHA
+============================================= */
+.forgot-link {
+  font-size: 12px;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+
+.forgot-link:hover { opacity: 0.75; }
+
+/* =============================================
+   BOTÃO ENTRAR
+============================================= */
+.btn-entrar {
+  width: 100%;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 15px;
+  cursor: pointer;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 24px rgba(79,142,247,0.25);
+  letter-spacing: 0.02em;
+}
+
+.btn-entrar:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 32px rgba(79,142,247,0.35);
+}
+
+.btn-entrar:active { transform: translateY(0); }
+
+.btn-entrar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-spinner {
+  width: 18px;
+  height: 18px;
+  animation: spin 0.7s linear infinite;
+}
+
+.hidden { display: none !important; }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* =============================================
+   STATUS GLOBAL
+============================================= */
+.status-global {
+  margin-top: 16px;
+  font-size: 13px;
+  border-radius: var(--radius-sm);
+  min-height: 0;
+  transition: all 0.3s;
+}
+
+.status-global.success {
+  color: var(--success);
+  background: var(--success-glow);
+  border: 1px solid rgba(52,211,153,0.2);
+  padding: 12px 14px;
+}
+
+.status-global.error {
+  color: var(--error);
+  background: var(--error-glow);
+  border: 1px solid rgba(248,113,113,0.2);
+  padding: 12px 14px;
+}
+
+/* =============================================
+   LINK CRIAR CONTA
+============================================= */
+.cadastro-link {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-2);
+  margin-top: 24px;
+}
+
+.cadastro-link a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.cadastro-link a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* =============================================
+   RESPONSIVO
+============================================= */
+@media (max-width: 768px) {
+  .wrapper { grid-template-columns: 1fr; }
+  .brand { display: none; }
+  .form-panel { padding: 40px 20px; align-items: flex-start; }
+  .form-card { max-width: 100%; }
+}

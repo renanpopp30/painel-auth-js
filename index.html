@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — Renda Extra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <main class="wrapper">
+
+    <!-- Lado esquerdo — branding -->
+    <aside class="brand">
+      <div class="brand-inner">
+        <div class="logo">RE</div>
+        <h2 class="brand-title">Bem-vindo<br /><span>de volta.</span></h2>
+        <p class="brand-sub">
+          Entre na sua conta e continue<br />
+          construindo sua renda digital.
+        </p>
+
+        <div class="brand-divider"></div>
+
+        <p class="brand-quote">
+          "Quem age todos os dias<br />chega onde outros só sonham."
+        </p>
+
+        <div class="brand-tag">Sistema v1.0</div>
+      </div>
+    </aside>
+
+    <!-- Lado direito — formulário -->
+    <section class="form-panel">
+      <div class="form-card">
+
+        <header class="form-header">
+          <div class="form-tag">Acesso seguro</div>
+          <h1>Entrar</h1>
+          <p class="form-desc">Insira suas credenciais para acessar o painel.</p>
+        </header>
+
+        <!-- Email -->
+        <div class="field">
+          <label for="email">E-mail</label>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="m2 7 10 7 10-7"/>
+            </svg>
+            <input type="email" id="email" placeholder="seu@email.com" autocomplete="email" />
+          </div>
+          <p class="field-error" id="erro-email"></p>
+        </div>
+
+        <!-- Senha -->
+        <div class="field">
+          <div class="label-row">
+            <label for="senha">Senha</label>
+            <a href="esqueceu/esqueceu.html" target="_blank" class="forgot-link">Esqueceu a senha?</a>
+          </div>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="3" y="11" width="18" height="11" rx="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            <input type="password" id="senha" placeholder="Sua senha" autocomplete="current-password" />
+            <button type="button" class="toggle-senha" data-target="senha" aria-label="Mostrar senha">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+          <p class="field-error" id="erro-senha"></p>
+        </div>
+
+        <!-- Botão -->
+        <button class="btn-entrar" id="btn-entrar" onclick="login()">
+          <span id="btn-text">Entrar</span>
+          <svg id="btn-loader" class="btn-spinner hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          </svg>
+        </button>
+
+        <!-- Status global -->
+        <div class="status-global" id="status-global"></div>
+
+        <p class="cadastro-link">
+          Não tem conta? <a href="cadastro/cadastro.html" target="_blank">Criar conta</a>
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
+</body>
+</html>
