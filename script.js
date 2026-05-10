@@ -1,15 +1,12 @@
-// =============================================
 // CONFIGURAÇÃO SUPABASE
-// =============================================
 const { createClient } = supabase
 const client = createClient(
   'https://wgzifyzzgdfbgilfvxds.supabase.co',  // Project URL
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndnemlmeXp6Z2RmYmdpbGZ2eGRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgwMzMxNDgsImV4cCI6MjA5MzYwOTE0OH0.hfzSbT6IM1bbIhLMyKsQA9j9Uneep3MLpnyc7t79t1w'
 )
 
-// =============================================
+
 // TOGGLE MOSTRAR/OCULTAR SENHA
-// =============================================
 document.querySelectorAll('.toggle-senha').forEach(btn => {
   btn.addEventListener('click', () => {
     const input = document.getElementById(btn.dataset.target)
@@ -17,9 +14,8 @@ document.querySelectorAll('.toggle-senha').forEach(btn => {
   })
 })
 
-// =============================================
+
 // GERAR HASH (mesma função do cadastro)
-// =============================================
 async function gerarHash(senhaUser) {
   const encoder = new TextEncoder()
   const data = encoder.encode(senhaUser)
@@ -27,9 +23,8 @@ async function gerarHash(senhaUser) {
   const hashArray = Array.from(new Uint8Array(hashBuffer))
   return hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
 }
-// =============================================
+
 // FUNÇÃO LOGIN
-// =============================================
 async function login() {
   const email = document.getElementById('email').value;
   const senha = document.getElementById('senha').value;
