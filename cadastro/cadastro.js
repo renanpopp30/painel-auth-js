@@ -1,4 +1,6 @@
 const { createClient } = supabase
+// anon key pública por design do Supabase
+// proteção real feita via RLS policies no banco
 const client = createClient(
   'https://wgzifyzzgdfbgilfvxds.supabase.co',
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndnemlmeXp6Z2RmYmdpbGZ2eGRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgwMzMxNDgsImV4cCI6MjA5MzYwOTE0OH0.hfzSbT6IM1bbIhLMyKsQA9j9Uneep3MLpnyc7t79t1w'
